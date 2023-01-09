@@ -51,7 +51,19 @@ async def haha(ctx):
 async def naisu(ctx):
     await ctx.send("raisu")
 
+@client.command()
+async def ricemindmehelp(ctx):
+	await ctx.send("ricemindme [hours] ["'reminder'"] ")
 
+@client.command()
+async def ricemindme(ctx, length, intent):
+	try:
+		await ctx.send("Reminding you in " + length + " minutes(s) of: " + intent)
+		time.sleep((int(float(length)) * 60))
+		await ctx.send(ctx.message.author.mention + ": reminder: " + intent)
+	except:
+		await ctx.send("An error occurred. please check ur formatting lol")
+	
 keep_alive.keep_alive()
 client.run(os.getenv("TOKEN")) #get your bot token and make a file called ".env" then inside the file write TOKEN=put your api key here example in env.txt
 #to keep your bot from shutting down use https://uptimerobot.com then create a https:// monitor and put the link to the website that appewars when you run this repl in the monitor and it will keep your bot alive by pinging the flask server
